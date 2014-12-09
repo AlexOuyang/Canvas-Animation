@@ -1,8 +1,9 @@
 //bg ball - background bubbles
-var BubbleCanvas = document.getElementById('bg-balls');
-var bgBallsCtx = BubbleCanvas.getContext('2d');
-var BG_BALLS_COUNT = 50;
-var BG_BALLS_GRAY = 100;
+var BubbleCanvas = document.getElementById('bubbles');
+var BubblesCtx = BubbleCanvas.getContext('2d');
+var BubbleCount = 50;
+//random rgb gray color value
+var BubbleColor = 100;
 //the radian of a circle
 var TwoPI = 2 * PI;
 
@@ -23,20 +24,20 @@ var Ball = function(x, y, size, speed, color) {
 			if (this.y > CANVAS_HEIGHT || this.y < 0)
 				this.y *= -1;
 
-			bgBallsCtx.fillStyle = 'rgba(' + this.color.r + ',' + this.color.g + ',' + this.color.b + ',' + this.color.a + ')';
-			bgBallsCtx.beginPath();
-			bgBallsCtx.arc(this.x, this.y, this.size, 0, TwoPI);
-			bgBallsCtx.fill();
+			BubblesCtx.fillStyle = 'rgba(' + this.color.r + ',' + this.color.g + ',' + this.color.b + ',' + this.color.a + ')';
+			BubblesCtx.beginPath();
+			BubblesCtx.arc(this.x, this.y, this.size, 0, TwoPI);
+			BubblesCtx.fill();
 		};
 	};
 
 
-
+// Create a Bubbles Object
 var	Bubbles = {
 		//the array of bubbles 
 		ballsArr: [],
 		createBalls: function() {
-			var i = BG_BALLS_COUNT;
+			var i = BubbleCount;
 			while (i--) {
 				this.ballsArr.push(
 					new Ball(
@@ -44,9 +45,9 @@ var	Bubbles = {
 						random() * CANVAS_HEIGHT,
 						random() * 5,
 						random(), {
-							r: BG_BALLS_GRAY,
-							g: BG_BALLS_GRAY,
-							b: BG_BALLS_GRAY,
+							r: BubbleColor,
+							g: BubbleColor,
+							b: BubbleColor,
 							a: random()
 						}
 					)
@@ -60,7 +61,7 @@ var	Bubbles = {
 		},
 		draw: function() {
 			//draw the bubbles
-			bgBallsCtx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+			BubblesCtx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 			this.ballsArr.forEach(function(ball) {
 				ball.draw(Bubbles.time);
 			});
