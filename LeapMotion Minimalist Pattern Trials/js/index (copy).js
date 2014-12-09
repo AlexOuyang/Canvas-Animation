@@ -16,18 +16,17 @@ window.requestAnimFrame = (function(){
 // bg - background
 var bgCanvas = document.getElementById('bg');
 //bg ball - background bubbles
-var bgBallsCanvas = document.getElementById('bg-balls');
+var BubbleCanvas = document.getElementById('bg-balls');
 //fg - line animations	
 var fgCanvas = document.getElementById('fg');
 var bgCtx = bgCanvas.getContext('2d');
-var bgBallsCtx = bgBallsCanvas.getContext('2d');
+var bgBallsCtx = BubbleCanvas.getContext('2d');
 var fgCtx = fgCanvas.getContext('2d');
+var LineSize = 30;
 var CANVAS_WIDTH = 666;
 var CANVAS_HEIGHT = 666;
 var BG_LINES_COUNT = 15;
 var BG_LINES_LENGTH = 1500;
-var BG_BALLS_COUNT = 50;
-var BG_BALLS_GRAY = 100;
 var FG_LINES_COUNT = 4;
 var FG_LINES_QUEUE_LENGTH = 66;
 var FG_LINES_COLORS = [{
@@ -214,7 +213,7 @@ var	App = {
 			var i = FG_LINES_COUNT;
 			while (i--) {
 				// new line (x, y, color, ease, size, offset)
-				this.linesArr.push(new Line(0,0,FG_LINES_COLORS[i],5,1, {x: 0,y: 0}));
+				this.linesArr.push(new Line(0,0,FG_LINES_COLORS[i],5,LineSize, {x: 0,y: 0}));
 			}
 		},
 		createBalls: function() {

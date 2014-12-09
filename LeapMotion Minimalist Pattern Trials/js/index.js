@@ -43,6 +43,8 @@ var FG_LINES_COLORS = [{
 		l: 50
 	}];
 
+
+
 //line class
 var Line = function(x, y, color, ease, size, offset) {
 		var _this = this,
@@ -170,7 +172,7 @@ var	App = {
 			// texture of the Lines, 'xor' darker' or 'lighter'
 			PatternCxt.globalCompositeOperation = 'xor';
 			PatternCxt.shadowColor = 'rgba(0,0,0,0.3)';
-			PatternCxt.lineCap = 'round';
+			PatternCxt.lineCap = 'square';
 			//PatternCxt.shadowBlur = 20;
 			this.animate();
 		}
