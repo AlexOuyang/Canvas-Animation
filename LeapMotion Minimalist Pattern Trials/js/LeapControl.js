@@ -15,7 +15,8 @@ Leap.loop({
 
     		HandIndexFingerDirection = dot.toPrecision(2);
 
-    		console.log(HandIndexFingerDirection);
+    		//console.log(HandIndexFingerDirection);
+    		console.log(hand);
   		} else {
   			HandDetected = false;
   		}

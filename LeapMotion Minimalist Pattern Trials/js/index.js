@@ -23,9 +23,9 @@ var PatternWidth = .5;
 var PatternHeight = .5;
 var CANVAS_WIDTH = 666;
 var CANVAS_HEIGHT = 666;
-var FG_LINES_COUNT = 4;
-var FG_LINES_QUEUE_LENGTH = 66;
-var FG_LINES_COLORS = [{
+var PatternLineCounts = 4;
+var PatternQueueLength = 66;
+var PatternLineColors = [{
 		h: 50,
 		s: 50,
 		l: 60
@@ -66,7 +66,7 @@ var Line = function(x, y, color, ease, size, offset) {
 				color: clone(this.color)
 			};
 
-			if (this.queue.length > FG_LINES_QUEUE_LENGTH)
+			if (this.queue.length > PatternQueueLength)
 				this.queue.splice(0, 1);
 
 			if (this.offset.x + 10 > tmpOffset.x)
@@ -133,10 +133,10 @@ var	App = {
 		},
 		linesArr: [],
 		createLines: function() {
-			var i = FG_LINES_COUNT;
+			var i = PatternLineCounts;
 			while (i--) {
 				// new line (x, y, color, ease, size, offset)
-				this.linesArr.push(new Line(0,0,FG_LINES_COLORS[i],5,15, {x: 0,y: 0}));
+				this.linesArr.push(new Line(0,0,PatternLineColors[i],5,15, {x: 0,y: 0}));
 			}
 		},
 		animate: function() {

@@ -16,13 +16,10 @@ var Ball = function(x, y, size, speed, color) {
 		this.speed = speed;
 		this.color = color;
 		this.draw = function(time) {
+			//each particle moves at different speed
 			this.speed = random() * this.size;
 			this.x += (random() -random()) * this.speed;
 			this.y += (random() -random()) * this.speed;
-			if (this.x > CANVAS_WIDTH || this.x < 0)
-				this.x *= -1;
-			if (this.y > CANVAS_HEIGHT || this.y < 0)
-				this.y *= -1;
 
 			BubblesCtx.fillStyle = 'rgba(' + this.color.r + ',' + this.color.g + ',' + this.color.b + ',' + this.color.a + ')';
 			BubblesCtx.beginPath();
@@ -35,16 +32,17 @@ var Ball = function(x, y, size, speed, color) {
 // Create a Bubbles Object
 var	Bubbles = {
 		//the array of bubbles 
-		ballsArr: [],
+		BubbleArray: [],
 		createBalls: function() {
 			var i = BubbleCount;
 			while (i--) {
-				this.ballsArr.push(
+				this.BubbleArray.push(
 					new Ball(
 						random() * CANVAS_WIDTH,
 						random() * CANVAS_HEIGHT,
 						random() * 5,
-						random(), {
+						random(), 
+						{
 							r: BubbleColor,
 							g: BubbleColor,
 							b: BubbleColor,
@@ -62,7 +60,7 @@ var	Bubbles = {
 		draw: function() {
 			//draw the bubbles
 			BubblesCtx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-			this.ballsArr.forEach(function(ball) {
+			this.BubbleArray.forEach(function(ball) {
 				ball.draw(Bubbles.time);
 			});
 		},
