@@ -15,6 +15,7 @@ canvas {
   top: 50%;
   left: 50%;
   margin: -333px 0 0 -333px;
+  z-index: 5;
 }
 
 aside {
@@ -23,11 +24,12 @@ aside {
   text-align: right;
   bottom: 5px;
   right: 25px;
+  z-index: 30;
 }
 
 h1 {
   font-weight: normal;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 10px;
 }
 
@@ -36,3 +38,139 @@ h2 {
   font-weight: normal;
   font-size: 13px;
 }
+
+
+/*Navigation Bar*/
+nav { 
+  transform: translate3d(0,-125%,0);
+}
+
+input[id*="nav"] {
+  display:none;
+}
+label {
+  display:block;
+  top:20px;
+  left:20px;
+  width:35px;
+  height:35px;
+  line-height:45px;
+  cursor:pointer;
+  user-select:none;
+  transition:.5s;
+  z-index:50;
+  position:fixed;
+  background: #000;
+  border-radius: 200px;
+}
+label:after{
+  content: '';
+  position: absolute;
+  top: -5px; left: -5px;
+  width: 30px; height: 30px;
+  border-radius: 200px;
+  border: 8px solid #4e4e4e;word-spacing;
+}
+label:hover{
+  background: #3b7e68;
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  transform: scale(1.3);
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+}
+
+nav {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: url("http://fc01.deviantart.net/fs70/i/2014/213/6/d/low_poly_background__2_by_desimonedesign-d7t7a6v.jpg");
+  background:#3b7e68;
+  background:#111;
+  z-index:10;
+  transition:.6s ease-in;
+  backface-visibility:hidden;
+  /*gradient effect*/
+}
+input[id*="nav"]:checked ~ nav {
+  transform: translate3d(0,0,0);
+}
+
+
+/*My Profile*/
+
+.leftBlock {
+  display: block !important;
+  width: 80px; 
+  height: 100%; 
+  /*background-color: #F2E394;*/
+  background: #111;
+}
+/*.middleBlock {
+  position: fixed;
+  display: block;
+  top:0px;
+  right:45%;
+  width: 10px; 
+  height: 100%; 
+  background-color: #111;
+}*/
+.rightBlock{
+  top:0px;
+  right:0px;
+  position: fixed;
+  display: block;
+  width: 45%; 
+  height: 100%; 
+  background-color: #5E412F;
+}
+#Profile {
+  position: absolute;
+  margin: auto;
+  top: -100px; right: 0px; bottom: 0; left: 0;
+  width: 150px; height: 150px;
+  border-radius: 150px;
+  z-index: 40;
+}
+#Profile:hover{
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+}
+
+#Profile:after {
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px;
+  width: 200px; height: 200px;
+  border-radius: 200px;
+  border: 30px solid #111;word-spacing;
+  background: url("https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10410778_790608814345448_4199883341498024959_n.jpg?oh=12b17caced9ac7d557f63e7c34279aee&oe=551617A5&__gda__=1427666708_1bb552606e07f0263380cb2b63272496");
+  -webkit-filter: brightness(100%);
+  background-size: cover;
+}
+
+#Profile img {
+  border-radius: 150px;
+}
+
+#Profile span {
+  position: absolute;
+  bottom: -120px;
+  right:0px;
+  display: block;
+  width: 250px;
+  text-align: center;
+  font-family: 'fantasy';
+  font-size: 50px;
+  color: #4e4e4e;
+  z-index: 60;
+}
+
+

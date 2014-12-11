@@ -32,11 +32,23 @@ var controller = Leap.loop({
 			//adjust HandY position on canvas
 			HandY = Handaverage[1] * (-2) + 800;
 			HandZ = Handaverage[1];
-			//console.log(HandX);
+
+			//check if both hands are registered
+			var pointablesMap = frame.pointablesMap;
+			var fingerSize = Object.keys(pointablesMap).length;
+			if(fingerSize ==10){
+				//console.log("both hands");
+			}else{
+				//
+			}
+
+
+			console.log(fingerSize);
 
 
   		} else {
   			HandDetected = false;
+
   		} 
   	}
 
@@ -58,7 +70,7 @@ function avgHandPosition(hand, historySamples) {
 	return sum;
 }
 
-//activate the pattern
+//activate the patternCluster
 App.init();
 
 

@@ -26,19 +26,19 @@ var CANVAS_HEIGHT = 666;
 var PatternLineCounts = 4;
 var PatternQueueLength = 66;
 var PatternLineColors = [{
-		h: 50,
-		s: 50,
-		l: 60
+		h: 60,
+		s: 60,
+		l: 50
 	}, {
 		h: 0,
-		s: 30,
+		s: 50,
 		l: 50
 	}, {
 		h: 200,
 		s: 50,
 		l: 50
 	}, {
-		h: 150,
+		h: 250,
 		s: 50,
 		l: 50
 	}];
