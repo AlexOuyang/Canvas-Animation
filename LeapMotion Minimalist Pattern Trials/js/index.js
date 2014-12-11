@@ -108,6 +108,7 @@ var Line = function(x, y, color, ease, size, offset) {
 
 			this.queue.push(newParticle);
 
+			//console.log("draw");
 		};
 	};
 
@@ -149,22 +150,32 @@ var	App = {
 			}
 		},
 		draw: function() {
-			//if fist gesture, clear out the line trajectory
-			//if palm gesture, draw trails
+			//clear out the line trajectory
 			if (HandIndexFingerDirection < 0){
 				PatternCxt.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 			} 
+			if (HandMiddleFingerDirection < 0){
+				//PatternCxt.shadowBlur = 20;
+			} else {
+				//PatternCxt.shadowBlur = 0;
+			}
+
+
+			//default circle trajectory
+			//App.emitter.x += sin(App.emitter.angle)* PatternWidth * App.emitter.step;
+			//App.emitter.y += cos(App.emitter.angle)* PatternHeight * App.emitter.step;
+			
+			//controls the direction of the LinePattern emitter
+			App.emitter.x = HandX;
+			App.emitter.y = HandY;
+			App.emitter.angle += this.time;
+			this.time++;
+
 			this.linesArr.forEach(function(line) {
 				line.x = App.emitter.x;
 				line.y = App.emitter.y;
 				line.draw(App.time);
 			});
-
-			App.emitter.x += sin(App.emitter.angle)* PatternWidth * App.emitter.step;
-			App.emitter.y += cos(App.emitter.angle)* PatternHeight * App.emitter.step;
-			App.emitter.angle += this.time;
-
-			this.time++;
 
 		},
 		init: function() {

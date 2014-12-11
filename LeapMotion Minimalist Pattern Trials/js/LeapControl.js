@@ -1,28 +1,62 @@
 
 var HandDetected = false;
-//fist - HandIndexFingerDirection <0; palm - HandIndexFingerDirection>0
+//fold index finger - HandIndexFingerDirection <0; extend index finger - HandIndexFingerDirection>0
 var HandIndexFingerDirection;
-//gesture control
-Leap.loop({
+var HandMiddleFingerDirection;
+//Hand position (x,y,z) x-leapmotion length direction, y-height, z -width
+var HandX;
+var HandY;
+var HandZ;
+
+//setup leapmotion controller
+var controller = Leap.loop({
 	frame: function(frame){
+		//detect gesture
   		var hand = frame.hands[0];
   		if (hand){
   			HandDetected = true;
   			//App.init();
-   			var dot = Leap.vec3.dot(hand.direction, hand.indexFinger.direction);
+   			var LeapIndexFinger = Leap.vec3.dot(hand.direction, hand.indexFinger.direction);
+   			var LeapMiddleFinger = Leap.vec3.dot(hand.direction, hand.middleFinger.direction);
+    		console.assert(!isNaN(LeapIndexFinger));
 
-    		console.assert(!isNaN(dot));
-
-    		HandIndexFingerDirection = dot.toPrecision(2);
+    		HandIndexFingerDirection = LeapIndexFinger.toPrecision(2);
+    		HandMiddleFingerDirection = LeapMiddleFinger.toPrecision(2);
 
     		//console.log(HandIndexFingerDirection);
-    		console.log(hand);
+
+	  		//detect hand position
+			var Handaverage = avgHandPosition(hand, 30);
+			//adjust HandY position
+			HandX = Handaverage[0] * (2) + 400;
+			//adjust HandY position on canvas
+			HandY = Handaverage[1] * (-2) + 800;
+			HandZ = Handaverage[1];
+			//console.log(HandX);
+
+
   		} else {
   			HandDetected = false;
-  		}
-	}
+  		} 
+  	}
+
 });
 
+
+//helper function
+function avgHandPosition(hand, historySamples) {
+	var sum = Leap.vec3.create();
+	Leap.vec3.copy(sum, hand.palmPosition);
+
+	for(var s = 1; s < historySamples; s++){
+	    var oldHand = controller.frame(s).hand(hand.id)
+	    if(!oldHand.valid) break;
+	    Leap.vec3.add(sum, oldHand.palmPosition, sum);
+	}
+	
+	Leap.vec3.scale(sum, sum, 1/s);
+	return sum;
+}
 
 //activate the pattern
 App.init();
