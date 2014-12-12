@@ -16,6 +16,9 @@ canvas {
   left: 50%;
   margin: -333px 0 0 -333px;
   z-index: 5;
+  border-radius: 40px;
+  /*border: 10px dotted black;word-spacing;*/
+  box-shadow: 0px 0px 5px #4e4e4e;
 }
 
 aside {
@@ -43,7 +46,7 @@ h2 {
 /*Navigation Bar*/
 
 nav {
-  opacity: .8;
+  opacity: .9;
   transform: translate3d(0,-125%,0);
   position:absolute;
   top:0;
@@ -66,24 +69,24 @@ label {
   display:block;
   top:20px;
   left:20px;
-  width:35px;
-  height:35px;
+  width:50px;
+  height:50px;
   line-height:45px;
   cursor:pointer;
   user-select:none;
   transition:.5s;
   z-index:50;
   position:fixed;
-  background: #000;
+  background: #4e4e4e;
   border-radius: 200px;
 }
 label:after{
   content: '';
   position: absolute;
-  top: -5px; left: -5px;
+  top: 2px; left: 2px;
   width: 30px; height: 30px;
   border-radius: 200px;
-  border: 8px solid #4e4e4e;word-spacing;
+  border: 8px solid #000;word-spacing;
 }
 label:hover{
   background: #3b7e68;
@@ -133,6 +136,8 @@ input[id*="nav"]:checked ~ nav {
   width: 150px; height: 150px;
   border-radius: 150px;
   z-index: 40;
+  transition:.5s .1s;
+
 }
 #Profile:hover{
   -webkit-transform: scale(1.5);

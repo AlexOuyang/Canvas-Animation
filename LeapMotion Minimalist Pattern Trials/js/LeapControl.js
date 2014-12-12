@@ -43,7 +43,7 @@ var controller = Leap.loop({
 			}
 
 
-			console.log(fingerSize);
+			//console.log(fingerSize);
 
 
   		} else {
@@ -71,10 +71,9 @@ function avgHandPosition(hand, historySamples) {
 }
 
 //activate the patternCluster
-App.init();
+PatternCluster.init();
 
 
 
-				PatternCxt.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
 
